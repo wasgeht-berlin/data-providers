@@ -1,0 +1,3 @@
+- name: Karrera Klub
+  main: karreraklub.py
+  interpreter: python2
