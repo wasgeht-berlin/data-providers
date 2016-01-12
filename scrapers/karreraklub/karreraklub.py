@@ -26,13 +26,19 @@ for event in events:
     title = event.find('span', class_='termin_info_name').text
     description = event.find('div', class_='termin_live_info_text').text
 
+    tags = ['party']
+
+    if title.find('Konzert') > 0:
+        tags.append('concert')
+
     result.append({ 
         'starting_time': starting_time, 
         'location': { 'human_name': location }, 
         'title': title,
         'description': description,
         'hash': hashlib.sha1(starting_time + location).hexdigest(),
-        'url': url # TODO: This may need a little refinement
+        'url': url, # TODO: This may need a little refinement,
+        'tags': tags
     })
 
 print(json.dumps(result, indent=4))
